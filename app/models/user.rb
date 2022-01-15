@@ -7,4 +7,5 @@ class User < ApplicationRecord
     has_many :likes, through: :images
     has_many :dislikes, through: :images
 
+    has_secure_password
 end

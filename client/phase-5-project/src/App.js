@@ -6,23 +6,30 @@ import Login from './Login';
 import Signup from './Signup';
 import Upload from './Upload';
 import NavBar from './NavBar';
+import { useState, useEffect } from 'react';
 
 function App() {
-  // function navigate(e) {
-  //   e.preventDefault();
-  //   window.history.pushState(null, "", e.target.href);
-  // }
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/auth")
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    });
+  }, []);
 
   return (
     
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NavBar />}>
+          <Route path="/" element={<NavBar onLogout={setUser} user={user} />}>
             <Route index element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login onLogin={setUser} />} />
+            <Route path="/signup" element={<Signup onLogin={setUser}/>} />
             <Route path="/upload" element={<Upload />} />
           </Route>
         </Routes>

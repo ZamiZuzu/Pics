@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
-
-    def index
+    skip_before_action :authorized, only: :index
+    def index   
         images = Image.all
         render json: images, status: :ok
     end

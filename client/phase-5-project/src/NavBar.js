@@ -1,26 +1,23 @@
 import { Outlet, Link} from "react-router-dom";
 
-function NavBar(){
+function NavBar({onLogout, user}){
+
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(() => onLogout(null));
+  }
+
+  const loggedOut = (<><Link to="/login">Login </Link><Link to="/signup">Signup </Link></>)
+  const loggedIn = <Link to="/" onClick={handleLogout}>Logout </Link>
+
     return(
         <>
             <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/signup">Signup</Link>
-                </li>
-                <li>
-                  <Link to="/upload">Upload</Link>
-                </li>
-              </ul>
+                  <Link to="/">Home </Link>
+                  <Link to="/profile">Profile </Link>
+                  {user ? loggedIn : loggedOut}
+                  <Link to="/upload">Upload </Link>
             </nav>
 
             <Outlet />
