@@ -25,19 +25,27 @@ class UsersController < ApplicationController
       end
 
     def destroy
-        destroyed_user = User.destroy
-        render json: destroyed_user, status: :no_content
+        if user
+            user.destroy
+            head :no_content
+        else
+            render json: {error: "User not found"}, status: :not_found
+        end
     end
 
     def update
         updated_user = user.update(user_params)
-        render json: user, status: :accepted
+        if updated_user
+            render json: user
+        else
+            render json: {error: "Not authorized"}, status: :unauthorized
+        end
     end
 
         private
 
     def user_params
-        params.permit(:username, :email, :password)
+        params.permit(:username, :email, :password, :bio, :id)
     end
 
     def user

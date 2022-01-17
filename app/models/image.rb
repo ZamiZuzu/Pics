@@ -1,6 +1,6 @@
 class Image < ApplicationRecord
     belongs_to :user
-    has_many :favorites
-    has_many :likes
-    has_many :dislikes
+    has_many :favorites, dependent: :destroy
+    has_many :likes, dependent: :destroy
+    has_many :dislikes, dependent: :destroy
 end

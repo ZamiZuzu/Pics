@@ -8,16 +8,14 @@ function NavBar({onLogout, user}){
     }).then(() => onLogout(null));
   }
 
-  const loggedOut = (<><Link to="/login">Login </Link><Link to="/signup">Signup </Link></>)
-  const loggedIn = <Link to="/" onClick={handleLogout}>Logout </Link>
+  const loggedOut = (<><Link to="/login">Login </Link> <Link to="/signup">Signup </Link></>)
+  const loggedIn = (<><Link to="/profile">Profile </Link> <Link to="/upload">Upload </Link> <Link to="/" onClick={handleLogout}>Logout </Link></>)
 
     return(
         <>
             <nav>
                   <Link to="/">Home </Link>
-                  <Link to="/profile">Profile </Link>
                   {user ? loggedIn : loggedOut}
-                  <Link to="/upload">Upload </Link>
             </nav>
 
             <Outlet />

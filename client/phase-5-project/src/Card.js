@@ -1,6 +1,6 @@
 
 
-function CardContainer({url, title}) {
+function Card({url, title}) {
 
   return (
         <div className="img-card">
@@ -9,4 +9,4 @@ function CardContainer({url, title}) {
     )
 }
 
-export default CardContainer;
+export default Card;
