@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from './Card';
 
 function UserUploads({user}){
-    const [imageList] = useState(user.images)
+    const [imageList, setImageList] = useState(user.images)
     const [visibleList, setVisibleList] = useState([])
     const [currentFinalImage, setCurrentFinalImage] = useState(0)
 
@@ -34,6 +34,8 @@ function UserUploads({user}){
           setCurrentFinalImage(currentFinalImage - 10)
         }
       }
+
+      
           
       return (
         <>
@@ -42,7 +44,7 @@ function UserUploads({user}){
               <h1>Oops, no more Uploads!</h1>
                 :
               visibleList.map((i) => {
-                return(<Card url={i.url} key={i.id} title={i.title}/>
+                return(<Card url={i.url} key={i.id} title={i.title} id={i.id} delete_option={setImageList} imageList={imageList}/>
                 )
               }) 
             }

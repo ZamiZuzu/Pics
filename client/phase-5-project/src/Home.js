@@ -1,9 +1,9 @@
 import CardContainer from "./CardContainer";
 
-function Home(){
+function Home({user, setUser}){
     return(
         <div>
-            <CardContainer />
+            <CardContainer user={user} setUser={setUser}/>
         </div>
     )
 }

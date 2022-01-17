@@ -6,8 +6,15 @@ class ReactionsController < ApplicationController
     end
 
     def create
-        created_reaction = Reaction.create(reaction_params)
-        render json: created_reaction, status: :created
+        created_reaction = Reaction.create(user_id: params[:user_id], image_id: params[:image_id], kind: params[:kind])
+        user = User.find(params[:user_id])
+        if created_reaction.valid?
+            render json: user, status: :created
+        else
+            reaction = Reaction.find_by(user_id: params[:user_id], image_id: params[:image_id], kind: params[:kind])
+            delete = Reaction.delete(reaction.id)
+            render json: user, status: :created
+        end
     end
 
     def destroy
@@ -17,5 +24,9 @@ class ReactionsController < ApplicationController
     end
     
         private
+
+    def reaction_params
+        params.permit(:user_id, :image_id, :kind)
+    end
 
 end

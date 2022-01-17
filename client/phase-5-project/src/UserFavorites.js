@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from './Card';
 
-function UserFavorites({user}){
+function UserFavorites({user, setUser}){
     const [imageList] = useState(user.favorites)
     const [visibleList, setVisibleList] = useState([])
     const [currentFinalImage, setCurrentFinalImage] = useState(0)
@@ -21,7 +21,7 @@ function UserFavorites({user}){
           }
           setVisibleList(tempArray)
         }
-      }, [imageList, currentFinalImage])
+      }, [imageList, currentFinalImage, user])
 
 
       const handleNextPage = () => {
@@ -42,12 +42,13 @@ function UserFavorites({user}){
               <h1>Oops, no more Favorites!</h1>
                 :
               visibleList.map((i) => {
-                return(<Card url={i.url} key={i.id} title={i.title}/>
+                return(<Card url={i.url} key={i.id} title={i.title} id={i.id} user={user} setUser={setUser}/>
                 )
               }) 
             }
           </div>
           <button onClick={handlePrevPage}>Previous Page</button>
+          <h3>Page: {(currentFinalImage / 10)+1}</h3>
           <button onClick={handleNextPage}>Next Page</button>
         </>
       );

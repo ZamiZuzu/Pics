@@ -1,7 +1,7 @@
-import {useState, useEffect} from "react"
+import {useState,} from "react"
 import { useNavigate } from "react-router-dom";
 
-function Signup({onLogin}){
+function Signup(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -25,11 +25,12 @@ function Signup({onLogin}){
           })
             .then((r) =>{
                 if (r.ok) {
-                    r.json().then(onLogin(user), navigate('/'));
+                    r.json().then(navigate('/login'));
                 } else {
                     r.json().then( e => setErrors(Object.entries(e.error).flat()))
                 }
             })
+        console.log(errors)
     }
 
     return(

@@ -30,9 +30,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar onLogout={setUser} user={user} />}>
-            <Route index element={<Home />} />
+            <Route index element={<Home user={user} setUser={setUser} />} />
             <Route path="profile" element={<Profile user={user} />}>
-              <Route path="favorites" element={<UserFavorites user={user}/>} />
+              <Route path="favorites" element={<UserFavorites user={user} setUser={setUser} />} />
               <Route path="uploads" element={<UserUploads user={user}/>} />
               <Route path="stats" element={<UserStats user={user}/>} />
               <Route path="edit" element={<UserEditForm user={user} onEdit={setUser} onDelete={setUser} />} />
