@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_01_18_151822) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_151822) do
   end
 
   create_table "dislikes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
+    t.bigint "user_id"
+    t.bigint "image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["image_id"], name: "index_dislikes_on_image_id"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_151822) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
+    t.bigint "user_id"
+    t.bigint "image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["image_id"], name: "index_favorites_on_image_id"
@@ -61,15 +64,15 @@ ActiveRecord::Schema.define(version: 2022_01_18_151822) do
   create_table "images", force: :cascade do |t|
     t.string "title"
     t.string "url"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
+    t.bigint "user_id"
+    t.bigint "image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["image_id"], name: "index_likes_on_image_id"
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_151822) do
 
   create_table "reactions", force: :cascade do |t|
     t.string "kind"
-    t.integer "user_id"
-    t.integer "image_id"
+    t.bigint "user_id"
+    t.bigint "image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["image_id"], name: "index_reactions_on_image_id"
