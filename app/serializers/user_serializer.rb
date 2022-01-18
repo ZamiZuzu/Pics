@@ -1,6 +1,15 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :bio, :favorites, :images, :likes_gained, :dislikes_gained, :favorites_gained, :reactions_gained
+  attributes :id, 
+             :username, 
+             :email, 
+             :bio, 
+             :likes_gained, 
+             :dislikes_gained, 
+             :favorites_gained, 
+             :reactions_gained
 
+  has_many :favorites, serializer: FavoriteSerializer
+  has_many :images,  serializer: ImageSerializer
   has_many :likes
   has_many :dislikes
   has_many :reactions
@@ -9,14 +18,14 @@ class UserSerializer < ActiveModel::Serializer
     Image.where(user_id: self.object.id)
   end
 
-  def favorites
-    image_ids = []
-    favorites = Favorite.where(user_id: self.object.id)
-    favorites.each do |x|
-      image_ids.push(x.image_id)
-    end
-    image_ids.map { |i| Image.find(i)}
-  end
+  # def favorites
+  #   image_ids = []
+  #   favorites = Favorite.where(user_id: self.object.id)
+  #   favorites.each do |x|
+  #     image_ids.push(x.image_id)
+  #   end
+  #   image_ids.map { |i| Image.find(i)}
+  # end
 
   def likes_gained
     i = images.map do |image|

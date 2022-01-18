@@ -11,15 +11,6 @@ function Card({url, title, id, user, setUser, delete_option, imageList}) {
     function handleClick(e) {
         let x = e.target.name
         let a = {image_id: id, user_id: user.id}
-        
-
-        // if (x === "likes"){
-        //     setLiked((liked) => !liked)
-        // }else if (x === "dislikes") {
-        //     setDisliked((disliked) => !disliked)
-        // }else if ( x === "favorites") {
-        //     setFavorited((favorited) => !favorited)
-        // }
 
         fetch(`/${x}`, {
             method: "POST",
@@ -70,7 +61,7 @@ function Card({url, title, id, user, setUser, delete_option, imageList}) {
                 setLiked(true)} else {setLiked(false)}
             if ( user.dislikes.some( e => e.image_id === id)){
                 setDisliked(true)} else {setDisliked(false)}
-            if ( user.favorites.some( e => e.id === id)){
+            if ( user.favorites.some( e => e.image.id === id)){
                 setFavorited(true)} else {setFavorited(false)}
             if ( user.reactions.some( e => e.image_id=== id && e.kind === "confused")){
                 setConfused(true)} else {setConfused(false)}

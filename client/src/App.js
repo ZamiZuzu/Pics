@@ -39,7 +39,7 @@ function App() {
             </Route>
             <Route path="login" element={<Login onLogin={setUser} />} />
             <Route path="signup" element={<Signup onLogin={setUser}/>} />
-            <Route path="upload" element={<Upload />} />
+            <Route path="upload" element={<Upload user={user} onUpload={setUser}/>} />
 
           </Route>
         </Routes>

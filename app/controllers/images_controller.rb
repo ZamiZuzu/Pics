@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
+
     skip_before_action :authorized, only: :index
+    
     def index   
         images = Image.all
         render json: images, status: :ok
@@ -10,8 +12,9 @@ class ImagesController < ApplicationController
     end
     
     def create
-        created_image = Image.create(image_params)
-        render json: created_image, status: :created
+        created_image = Image.create(user_id: params[:user_id], title: params[:title], picture: params[:picture])
+        user = User.find(params[:user_id])
+        render json: user, status: :created
     end
 
     def destroy
@@ -22,7 +25,7 @@ class ImagesController < ApplicationController
         private
 
     def image_params
-        params.permit(:title, :url, :user_id)
+        params.permit(:title, :user_id, :picture)
     end
 
     def image

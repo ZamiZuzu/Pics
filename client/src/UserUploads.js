@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Card from './Card';
 
-function UserFavorites({user, setUser}){
-    const [imageList] = useState(user.favorites)
+function UserUploads({user}){
+    const [imageList, setImageList] = useState(user.images)
     const [visibleList, setVisibleList] = useState([])
     const [currentFinalImage, setCurrentFinalImage] = useState(0)
 
@@ -21,7 +21,7 @@ function UserFavorites({user, setUser}){
           }
           setVisibleList(tempArray)
         }
-      }, [imageList, currentFinalImage, user])
+      }, [imageList, currentFinalImage])
 
 
       const handleNextPage = () => {
@@ -34,15 +34,22 @@ function UserFavorites({user, setUser}){
           setCurrentFinalImage(currentFinalImage - 10)
         }
       }
+
+      
           
       return (
         <>
           <div className="card-container">
             {visibleList.length === 0 ?
-              <h1>Oops, no more Favorites!</h1>
+              <h1>Oops, no more Uploads!</h1>
                 :
               visibleList.map((i) => {
-                return(<Card url={i.url} key={i.id} title={i.title} id={i.id} user={user} setUser={setUser}/>
+                return(<Card url={i.picture.url} 
+                             key={i.id} 
+                             title={i.title} 
+                             id={i.id} 
+                             delete_option={setImageList} 
+                             imageList={imageList}/>
                 )
               }) 
             }
@@ -54,4 +61,4 @@ function UserFavorites({user, setUser}){
       );
     }
 
-export default UserFavorites;
+export default UserUploads;

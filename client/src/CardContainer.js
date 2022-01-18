@@ -51,7 +51,12 @@ function CardContainer({user, setUser}) {
           <h1>Oops, no more Images!</h1>
             :
           visibleList.map((i) => {
-            return(<Card url={i.url} key={i.id} title={i.title} id={i.id} user={user} setUser={setUser}/>
+            return(<Card url={i.picture.url} 
+                         key={i.id} 
+                         title={i.title} 
+                         id={i.id} 
+                         user={user} 
+                         setUser={setUser}/>
             )
           }) 
         }
