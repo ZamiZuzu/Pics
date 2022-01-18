@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import "./Card.css";
 
 function Card({url, title, id, user, setUser, delete_option, imageList}) {
