@@ -7,7 +7,7 @@ function CardContainer({user, setUser}) {
   const [currentFinalImage, setCurrentFinalImage] = useState(0)
 
   useEffect(() => {
-    fetch('http://localhost:4000/images')
+    fetch('/images')
     .then((res) => res.json())
     .then((data) => {
       setImageList(data)
