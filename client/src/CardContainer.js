@@ -61,9 +61,11 @@ function CardContainer({user, setUser}) {
           }) 
         }
       </div>
-      <button onClick={handlePrevPage}>Previous Page</button>
-      <h3>Page: {(currentFinalImage / 10)+1}</h3>
-      <button onClick={handleNextPage}>Next Page</button>
+      <div className="page-buttons">
+      <button onClick={handlePrevPage}> &lt; </button>
+      <p>{(currentFinalImage / 10)+1}</p>
+      <button onClick={handleNextPage}> &gt; </button>
+      </div>
     </>
   );
 }

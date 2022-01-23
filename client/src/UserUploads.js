@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from './Card';
 
-function UserUploads({user}){
+function UserUploads({user, setUser}){
     const [imageList, setImageList] = useState(user.images)
     const [visibleList, setVisibleList] = useState([])
     const [currentFinalImage, setCurrentFinalImage] = useState(0)
@@ -49,14 +49,18 @@ function UserUploads({user}){
                              title={i.title} 
                              id={i.id} 
                              delete_option={setImageList} 
-                             imageList={imageList}/>
+                             imageList={imageList}
+                             userid={user.id}
+                             setUser={setUser}/>
                 )
               }) 
             }
           </div>
-          <button onClick={handlePrevPage}>Previous Page</button>
-          <h3>Page: {(currentFinalImage / 10)+1}</h3>
-          <button onClick={handleNextPage}>Next Page</button>
+          <div className="page-buttons">
+            <button onClick={handlePrevPage}> &lt; </button>
+            <p>{(currentFinalImage / 10)+1}</p>
+            <button onClick={handleNextPage}> &gt; </button>
+          </div>
         </>
       );
     }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Card.css";
 
-function Card({url, title, id, user, setUser, delete_option, imageList}) {
+function Card({url, title, id, user, setUser, delete_option, imageList, userid}) {
     const [liked, setLiked] = useState(false)
     const [disliked, setDisliked] = useState(false)
     const [favorited, setFavorited] = useState(false)
@@ -44,13 +44,20 @@ function Card({url, title, id, user, setUser, delete_option, imageList}) {
     }
 
     function handleDelete() {
+        let a = {user_id: userid}
+        const newList = imageList.filter( i => i.id !== id)
+
         fetch(`/images/${id}`, {
             method: "DELETE",
-            body: {user_id: delete_option}
-        }).then(() => {
-            const newList = imageList.filter( i => i.id !== id)
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(a),
+        }).then((res) => res.json())
+          .then((data) => 
+            setUser(data),
             delete_option(newList)
-        });
+        );
     }
 
     useEffect(() => {
@@ -70,11 +77,12 @@ function Card({url, title, id, user, setUser, delete_option, imageList}) {
   return (
         <div className="img-card">
             <img src={url} className="preview-img" alt={title}/>
+            <h4>{title}</h4>
             {user ? 
             <div className="buttons">
-                <button onClick={handleClick} className={liked ? "clicked" : "unclicked"} name="likes">Up</button>
-                <button onClick={handleClick} className={disliked ? "clicked" : "unclicked"} name="dislikes">Down</button>
-                <button onClick={handleClick} className={favorited ? "clicked" : "unclicked"} name="favorites">Star</button>
+                <button onClick={handleClick} className={liked ? "clicked" : "unclicked"} name="likes">Like</button>
+                <button onClick={handleClick} className={disliked ? "clicked" : "unclicked"} name="dislikes">Dislike</button>
+                <button onClick={handleClick} className={favorited ? "clicked" : "unclicked"} name="favorites">Fav</button>
                 <button onClick={handleReaction} className={confused ? "clicked" : "unclicked"} name="confused">?</button>
             </div>
             :  delete_option ? 

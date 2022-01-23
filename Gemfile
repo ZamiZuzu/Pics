@@ -8,6 +8,7 @@ gem "rails", "~> 7.0.1"
 
 gem "active_model_serializers"
 gem "thread_safe"
+gem "aws-sdk-s3", require: false
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

@@ -1,7 +1,8 @@
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css"
 
-function Login({ onLogin }){
+function Login({ onLogin, setActive }){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     let navigate = useNavigate();
@@ -23,27 +24,31 @@ function Login({ onLogin }){
             .then((r) => r.json())
             .then((user) => 
                 onLogin(user),
+                setActive("Home"),
                 navigate("/")
             );
     }
     
 
     return(
+        <div className="login">
+          <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-          /><br/>
+            /><br/>
           <input
             type="text"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          /><br/>
+            /><br/>
         <button type="submit">Login</button>
-      </form>
+        </form>
+      </div>
     )
 }
 

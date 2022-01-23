@@ -1,11 +1,12 @@
 import {useState,} from "react"
 import { useNavigate } from "react-router-dom";
+import "./Login.css"
 
-function Signup(){
+
+function Signup({setActive}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [errors, setErrors] = useState([])
+    // const [email, setEmail] = useState("");
     
     let navigate = useNavigate();
     
@@ -13,8 +14,7 @@ function Signup(){
         e.preventDefault();
         const user = {
             username,
-            password,
-            email
+            password
         }
         fetch("/users", {
             method: "POST",
@@ -25,39 +25,40 @@ function Signup(){
           })
             .then((r) =>{
                 if (r.ok) {
-                    r.json().then(navigate('/login'));
-                } else {
-                    r.json().then( e => setErrors(Object.entries(e.error).flat()))
+                    r.json().then(navigate('/login'),
+                    setActive("Login"));
                 }
             })
-        console.log(errors)
     }
 
     return(
+        <div className="login">
+            <h1>Signup</h1>
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-            />
+                />
                 <br/>
-            <input
+            {/* <input
               type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
-                <br/>
+              />
+            <br/> */}
             <input
                 type="text"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-            />
+                />
                 <br/>
             <button type="submit">Sign Up</button>
       </form>
+                </div>
     )
 }
 

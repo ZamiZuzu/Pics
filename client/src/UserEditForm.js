@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function UserEditForm({user, onEdit, onDelete}) {
+function UserEditForm({user, onEdit, onDelete, setActive}) {
     const [bio, setBio] = useState("");
     let navigate = useNavigate();
 
@@ -30,6 +30,7 @@ function UserEditForm({user, onEdit, onDelete}) {
             method: "DELETE",
         }).then(() => 
             onDelete(null),
+            setActive("Home"),
             navigate("/")
             );
     }
@@ -47,7 +48,7 @@ function UserEditForm({user, onEdit, onDelete}) {
             <button type="submit">Submit Changes</button>
         </form>
         <h1>Delete</h1>
-            <button onClick={handleDelete}>Delete Profile</button>
+            <button className="delete" onClick={handleDelete}>Delete Profile</button>
         </>
     )
 }

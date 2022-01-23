@@ -44,7 +44,7 @@ function UserFavorites({user, setUser}){
               visibleList.map((i) => {
                 return(<Card url={i.image.picture.url} 
                              key={i.id} 
-                             title={i.title} 
+                             title={i.image.title} 
                              id={i.image.id} 
                              user={user} 
                              setUser={setUser}/>
@@ -52,9 +52,11 @@ function UserFavorites({user, setUser}){
               }) 
             }
           </div>
-          <button onClick={handlePrevPage}>Previous Page</button>
-          <h3>Page: {(currentFinalImage / 10)+1}</h3>
-          <button onClick={handleNextPage}>Next Page</button>
+          <div className="page-buttons">
+            <button onClick={handlePrevPage}> &lt; </button>
+            <p>{(currentFinalImage / 10)+1}</p>
+            <button onClick={handleNextPage}> &gt; </button>
+          </div>
         </>
       );
     }

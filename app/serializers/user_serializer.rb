@@ -1,7 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, 
              :username, 
-             :email, 
              :bio, 
              :likes_gained, 
              :dislikes_gained, 

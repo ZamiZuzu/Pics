@@ -6,10 +6,6 @@ class ImagesController < ApplicationController
         images = Image.all
         render json: images, status: :ok
     end
-
-    def show
-        render json: image, status: ok
-    end
     
     def create
         created_image = Image.create(user_id: params[:user_id], title: params[:title], picture: params[:picture])
@@ -19,7 +15,8 @@ class ImagesController < ApplicationController
 
     def destroy
         destroyed_image = image.destroy
-        render json: destroyed_image, status: :no_content
+        user = User.find(params[:user_id])
+        render json: user, status: :ok
     end
     
         private

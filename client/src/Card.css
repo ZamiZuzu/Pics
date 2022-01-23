@@ -5,6 +5,7 @@
     margin: 10px;
     width: 226px;
     height: 275px;
+    background-color: white;
   }
   
   .preview-img {
@@ -12,6 +13,7 @@
     margin-left: auto;
     margin-right: auto;
     position: absolute;
+    border-style: solid;
     top: 13px;
     left: 13px;
     right: 13px;
@@ -29,6 +31,22 @@
     right: 13px;
   }
 
+  .buttons button:hover {
+    background-color: black;
+    color: white;
+  }
+
   .clicked {
-      color: red
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+
+  h4 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 17px;
+    left: 13px;
+    right: 13px;
   }
