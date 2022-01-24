@@ -13,7 +13,9 @@ development:
   <<: *default
   database: ddtasb1lvu7jh2
   host: localhost
-  username: user
+  username: postgres
+  # password: 
+
   database: app-dev
 
 # Warning: The database defined as "test" will be erased and
