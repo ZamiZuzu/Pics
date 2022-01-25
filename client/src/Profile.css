@@ -1,0 +1,48 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.profile-nav {
+    background-color: black;
+    overflow: hidden;
+    width: 100%;
+}
+
+.profile-nav a {
+    text-decoration: none;
+    color: white;
+    float: left;
+    padding: 5px 10px;
+}
+
+.profile-nav a:hover {
+    background-color: slategray;
+}
+
+.profile-nav a:active {
+    background-color: lightgray;
+    color: black;
+}
+
+.profile-nav a.active {
+    background-color:  white;
+    color: black
+}
+
+.profile ul {
+    list-style-position: inside;
+    align-self: center;
+}
+
+
+.profile button:hover {
+  background-color: black;  
+  color: white;
+}
+
+.delete {
+    width: 100px;
+    align-self: center;
+}

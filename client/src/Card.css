@@ -1,0 +1,52 @@
+.img-card{
+    flex: none;
+    position: relative;
+    border-style: solid;
+    margin: 10px;
+    width: 226px;
+    height: 275px;
+    background-color: white;
+  }
+  
+  .preview-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    border-style: solid;
+    top: 13px;
+    left: 13px;
+    right: 13px;
+    max-width: 200px;
+    max-height: 200px;
+  }
+  
+  .buttons {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 13px;
+    left: 13px;
+    right: 13px;
+  }
+
+  .buttons button:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .clicked {
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+
+  h4 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 17px;
+    left: 13px;
+    right: 13px;
+  }
